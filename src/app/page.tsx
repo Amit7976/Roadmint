@@ -18,7 +18,7 @@ export default function Page() {
         <div className="w-[98%] h-screen absolute overflow-hidden">
           <Meteors />
         </div>
-        {/* <SplashCursor /> */}
+        <SplashCursor />
         <Header />
         <Hero />
         <FeaturesSection />

@@ -87,7 +87,7 @@ export default function StreakDisplay() {
       setShowOverlay(true);
       localStorage.setItem(STORAGE_KEYS.BADGE_VIEWED_PREFIX + label, 'true');
     }
-  }, []);
+  }, [streak]);
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,7 +117,7 @@ export default function StreakDisplay() {
             onMouseEnter={() => confettiRef.current?.fire({})}
           />
           <p className="text-2xl text-white font-medium font-mono text-center">
-            You've unlocked the <span className="font-bold text-pink-600 whitespace-nowrap">{icon} {label}</span>
+            You&#39;ve unlocked the <span className="font-bold text-pink-600 whitespace-nowrap">{icon} {label}</span>
           </p>
           <p className="text-sm text-gray-200 italic">
             Click Anywhere to remove it.

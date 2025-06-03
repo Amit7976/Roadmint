@@ -47,7 +47,7 @@ function Hero() {
                     </TextAnimate>
 
                     <TextAnimate animation="blurIn" by="word" as='p' className="mt-5 text-gray-300 max-w-xl mx-auto font-bold lg:font-medium">
-                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you'll get!
+                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you&#39;ll get!
                     </TextAnimate>
 
                     <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">

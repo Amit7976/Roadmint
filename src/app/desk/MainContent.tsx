@@ -18,6 +18,7 @@ export default function MainContent() {
     const [roadmaps, setRoadmaps] = useState<{ key: string; data: Roadmap }[]>([]);
     const [activeTab, setActiveTab] = useState<string | null>(null);
     const [refreshCounter, setRefreshCounter] = useState(0);
+    console.log(refreshCounter);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
