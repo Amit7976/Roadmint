@@ -3,6 +3,7 @@ import { Props, Roadmap } from "@/utils/types";
 import confetti from "canvas-confetti";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +77,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 
     const handleComplete = (subject: string, index: number) => {
         const updated = { ...roadmap };
-        
+
         if (!updated[subject][index].marked) {
             updated[subject][index].marked = true;
             setRoadmap(updated);
@@ -216,19 +217,29 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
                                             >
                                                 {idx + 1}. {topic.title}
                                             </span>
+                                            <div className="flex flex-col lg:flex-row gap-3 items-center">
+                                                <div className="w-full text-center">
 
-                                            <Button
-                                                onClick={() => handleComplete(subject, idx)}
-                                                disabled={topic.marked || !canMark}
-                                                className={`ml-4 text-xs md:text-sm font-medium px-4 py-1.5 rounded-sm lg:rounded-lg transition-colors duration-150 ${topic.marked
-                                                    ? "bg-transparent cursor-not-allowed"
-                                                    : canMark
-                                                        ? "bg-green-500 hover:bg-green-700 text-white cursor-pointer lg:px-10 lg:h-12 text-shadow-lg font-bold lg:font-medium"
-                                                        : "bg-gray-600 text-gray-300 cursor-not-allowed"
-                                                    }`}
-                                            >
-                                                {topic.marked ? "Completed 🎉" : "Mark Complete"}
-                                            </Button>
+                                                    {!topic.marked && canMark &&
+                                                        <Link href={`https://www.youtube.com/results?search_query=${topic.title}`}
+                                                            className="text-purple-400 flex items-center justify-center h-9 lg:h-12 border-[3px] border-pink-600 hover:bg-pink-600 hover:text-white duration-300 ml-4 text-xs md:text-sm font-medium px-4 lg:px-10 py-1.5 rounded-sm lg:rounded-lg">
+                                                            Learn Now
+                                                        </Link>
+                                                    }
+                                                </div>
+                                                <Button
+                                                    onClick={() => handleComplete(subject, idx)}
+                                                    disabled={topic.marked || !canMark}
+                                                    className={`ml-4 text-xs md:text-sm font-medium px-4 py-1.5 rounded-sm lg:rounded-lg transition-colors duration-150 ${topic.marked
+                                                        ? "bg-transparent cursor-not-allowed"
+                                                        : canMark
+                                                            ? "bg-green-500 hover:bg-green-700 text-white cursor-pointer lg:px-10 lg:h-12 text-shadow-lg font-bold lg:font-medium"
+                                                            : "bg-gray-600 text-gray-300 cursor-not-allowed"
+                                                        }`}
+                                                >
+                                                    {topic.marked ? "Completed 🎉" : "Mark Complete"}
+                                                </Button>
+                                            </div>
                                         </li>
                                     );
                                 })}
