@@ -2,13 +2,17 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import faqs from "@/utils/constants/faqs"
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 export default function FAQ() {
     return (
         <section className="max-w-5xl px-4 py-12 mx-auto">
             <div className="text-center mb-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-white">Frequently Asked Questions</h2>
                 <p className="mt-2 text-neutral-400 max-w-xl mx-auto">
-                    Answers to the most common questions about the app, learning pace, and features.
+                    Answers to the most common questions about the Roadmint app, learning pace, and features.
                 </p>
             </div>
 

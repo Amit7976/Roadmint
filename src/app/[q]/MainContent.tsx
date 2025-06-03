@@ -1,26 +1,36 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import askAI from "@/utils/askAi";
-import { MultiStepLoader as Loader } from "@/components/ui/multi-step-loader";
-import { PageProps } from "@/utils/types";
-import loadingStates from "@/utils/constants/loadingStates";
 import ResultDisplay from "@/components/mainUi/ResultDisplay";
+import { MultiStepLoader as Loader } from "@/components/ui/multi-step-loader";
+import askAI from "@/utils/askAi";
+import loadingStates from "@/utils/constants/loadingStates";
+import { PageProps, Roadmap, Topic } from "@/utils/types";
+import { useEffect, useState } from "react";
 
-// Base64 encode/decode
-const encrypt = (data: any) => btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-const decrypt = (data: string) => JSON.parse(decodeURIComponent(escape(atob(data))));
 
-// 🔁 Helper: Converts all topics from string[] to object[] with `marked: false`
-const normalizeResult = (data: any) => {
-    const normalized: any = {};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const encrypt = (data: Roadmap): string =>
+    btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const decrypt = (data: string): Roadmap =>
+    JSON.parse(decodeURIComponent(escape(atob(data))));
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const convertStringToObject = (data: Record<string, Array<string | Topic>>): Roadmap => {
+    const normalized: Roadmap = {};
 
     for (const subject in data) {
         if (Array.isArray(data[subject])) {
-            normalized[subject] = data[subject].map((topic: any) =>
+            normalized[subject] = data[subject].map((topic) =>
                 typeof topic === "string"
                     ? { title: topic, marked: false }
                     : {
-                        title: topic.title || topic,
+                        title: typeof topic === "string" ? topic : topic.title ?? String(topic),
                         marked: topic.marked ?? false,
                     }
             );
@@ -30,22 +40,30 @@ const normalizeResult = (data: any) => {
     return normalized;
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function MainContent({ topic }: PageProps) {
-    const [result, setResult] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
-    const [minimumTimePassed, setMinimumTimePassed] = useState(false);
+    const [result, setResult] = useState<Roadmap | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [minimumTimePassed, setMinimumTimePassed] = useState<boolean>(false);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     useEffect(() => {
         if (!topic) return;
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         const cacheKey = `roadmap_${topic}`;
         const cached = localStorage.getItem(cacheKey);
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // ✅ Use cached
         if (cached) {
             try {
                 const decrypted = decrypt(cached);
-                setResult(normalizeResult(decrypted));
+                setResult(convertStringToObject(decrypted));
                 setLoading(false);
                 setMinimumTimePassed(true);
                 return;
@@ -54,7 +72,8 @@ function MainContent({ topic }: PageProps) {
             }
         }
 
-        // 🚀 Fetch new
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         const minDuration = 8000;
         const displayDelay = 5000;
 
@@ -64,19 +83,21 @@ function MainContent({ topic }: PageProps) {
 
         const timer = setTimeout(() => setMinimumTimePassed(true), minDuration);
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         askAI({
             topic,
             setResult: (res: string) => {
                 try {
                     const json = res.match(/```json\n([\s\S]*?)\n```/);
                     const parsed = json?.[1] ? JSON.parse(json[1]) : res;
-                    const normalized = normalizeResult(parsed);
-
+                    const normalized = convertStringToObject(parsed);
                     setResult(normalized);
                     localStorage.setItem(cacheKey, encrypt(normalized));
                 } catch (err) {
                     console.error("AI response parse failed:", err);
-                    setResult(res);
+                    // fallback to raw string, though it shouldn't normally happen
+                    setResult({ fallback: [{ title: res, marked: false }] });
                 }
             },
             setLoading: (bool: boolean) => {
@@ -86,15 +107,19 @@ function MainContent({ topic }: PageProps) {
             },
         });
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         return () => clearTimeout(timer);
     }, []);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div className="whitespace-pre-wrap text-white p-4 rounded min-h-screen">
             {loading || !minimumTimePassed ? (
                 <Loader loadingStates={loadingStates} loading={true} duration={1300} />
             ) : (
-                    <ResultDisplay result={result} searchTopic={topic} />
+                result && <ResultDisplay result={result} searchTopic={topic} />
             )}
         </div>
     );

@@ -1,36 +1,29 @@
 "use client";
-
+import { Props, Roadmap } from "@/utils/types";
 import confetti from "canvas-confetti";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 
 
-type Topic = {
-    title: string;
-    marked: boolean;
-};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-type Roadmap = {
-    [subject: string]: Topic[];
-};
 
-type Props = {
-    result: Roadmap;
-    searchTopic: string;
-};
-
-const encrypt = (data: any) =>
+const encrypt = (data: Roadmap) =>
     btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-const decrypt = (data: string) =>
-    JSON.parse(decodeURIComponent(escape(atob(data))));
 
-const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh }) => {
     const [roadmap, setRoadmap] = useState(result);
     const [expanded, setExpanded] = useState<{ [subject: string]: boolean }>({});
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // refs for each topic item
     const topicRefs = useRef<{ [subject: string]: Array<HTMLLIElement | null> }>({});
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     useEffect(() => {
         const initialExpanded: { [subject: string]: boolean } = {};
 
@@ -49,19 +42,14 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
         setExpanded(initialExpanded);
     }, [result]);
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-    // Scroll to current topic on mount or roadmap change
     useEffect(() => {
-        // Just use `result`, no need to decrypt from localStorage
         for (const [subject, topics] of Object.entries(result)) {
             for (let i = 0; i < topics.length; i++) {
                 if (!topics[i].marked) {
-                    // Expand this subject if not expanded yet
                     setExpanded((prev) => ({ ...prev, [subject]: true }));
 
-                    // Scroll to this topic ref if available
                     setTimeout(() => {
                         topicRefs.current[subject]?.[i]?.scrollIntoView({
                             behavior: "smooth",
@@ -75,6 +63,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
         }
     }, [result]);
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const toggleExpand = (subject: string) => {
         setExpanded((prev) => ({
@@ -83,19 +72,24 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
         }));
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     const handleComplete = (subject: string, index: number) => {
         const updated = { ...roadmap };
+        
         if (!updated[subject][index].marked) {
             updated[subject][index].marked = true;
             setRoadmap(updated);
 
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             try {
                 const encrypted = encrypt(updated);
                 localStorage.setItem(`roadmap_${searchTopic}`, encrypted);
 
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                const end = Date.now() + 1000; // 3 seconds
+                const end = Date.now() + 1000;
                 const colors = ["#60ff1c", "#ff708f", "#ffd86c", "#e97cff"];
                 const frame = () => {
                     if (Date.now() > end) return;
@@ -122,12 +116,16 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
 
                 frame();
 
+                triggerRefresh?.();
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             } catch (err) {
                 console.error("Failed to update localStorage:", err);
             }
 
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            // Auto scroll to next topic if exists
             setTimeout(() => {
                 const nextIndex = index + 1;
                 if (topicRefs.current[subject] && topicRefs.current[subject][nextIndex]) {
@@ -140,11 +138,15 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
         }
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     if (!roadmap)
         return <p className="text-white">AI response will appear here...</p>;
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 my-6">
             {Object.entries(roadmap).map(([subject, topics]) => {
                 const completedCount = topics.filter((t) => t.marked).length;
                 const totalCount = topics.length;
@@ -165,7 +167,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
                             className="w-full flex justify-between items-center h-16 cursor-pointer select-none rounded-t-2xl rounded-b-none bg-neutral-900 sticky top-0 z-20 border-b border-zinc-700 shadow-2xl"
                             aria-expanded={isExpanded}
                         >
-                            <h2 className={`text-xl px-3 font-semibold ${completedCount === totalCount ? 'text-green-400' : 'text-white'}`}>
+                            <h2 className={`text-lg truncate sm:text-xl px-1 sm:px-3 font-semibold ${completedCount === totalCount ? 'text-green-400' : 'text-white'}`}>
                                 {subject}
                             </h2>
                             <div className="flex items-center space-x-4">
@@ -173,7 +175,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
                                     {completedCount} / {totalCount} <b> </b> Completed {completedCount === totalCount ? '🎉' : ''}
                                 </span>
                                 <svg
-                                    className={`w-5 h-5 text-teal-300 transform transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
+                                    className={`w-5 h-5 text-purple-400 transform transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
                                         }`}
                                     fill="none"
                                     stroke="currentColor"
@@ -190,7 +192,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
                         </Button>
 
                         {isExpanded && (
-                            <ul className="space-y-3 px-6 py-6">
+                            <ul className="space-y-3 p-3 sm:p-6">
                                 {topics.map((topic, idx) => {
                                     const canMark = idx === 0 || topics[idx - 1].marked;
                                     return (
@@ -218,10 +220,10 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic }) => {
                                             <Button
                                                 onClick={() => handleComplete(subject, idx)}
                                                 disabled={topic.marked || !canMark}
-                                                className={`ml-4 text-xs md:text-sm font-medium px-4 py-1.5 rounded-lg transition-colors duration-150 ${topic.marked
+                                                className={`ml-4 text-xs md:text-sm font-medium px-4 py-1.5 rounded-sm lg:rounded-lg transition-colors duration-150 ${topic.marked
                                                     ? "bg-transparent cursor-not-allowed"
                                                     : canMark
-                                                        ? "bg-green-500 hover:bg-green-700 text-white cursor-pointer px-10 h-12 text-shadow-lg  "
+                                                        ? "bg-green-500 hover:bg-green-700 text-white cursor-pointer lg:px-10 lg:h-12 text-shadow-lg font-bold lg:font-medium"
                                                         : "bg-gray-600 text-gray-300 cursor-not-allowed"
                                                     }`}
                                             >

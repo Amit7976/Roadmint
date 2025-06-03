@@ -6,7 +6,6 @@ const loadingStates = [
   { text: "Tuning for clarity" },
   { text: "Adding AI insights" },
   { text: "Final touches" },
-  { text: "⚡ Building your roadmap..." },
+  { text: "⚡Building your roadmap..." },
 ];
-
 export default loadingStates;

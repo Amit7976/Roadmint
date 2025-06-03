@@ -1,5 +1,12 @@
-const askAI = async ({topic, setLoading, setResult}:any) => {
+import { AskAIParams } from "@/utils/types";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const askAI = async ({ topic, setLoading, setResult }: AskAIParams) => {
   if (!topic.trim()) return alert("Please enter a topic!");
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const prompt = `I want to learn ${topic}. 
 Act like a subject matter expert and curriculum architect for [TOPIC].
@@ -22,6 +29,8 @@ Just a raw JSON object of cleanly grouped subtopics for [TOPIC].
 
     `;
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   setLoading(true);
   const res = await fetch("/api/ai", {
     method: "POST",
@@ -31,10 +40,11 @@ Just a raw JSON object of cleanly grouped subtopics for [TOPIC].
     },
   });
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const data = await res.json();
   setResult(data.text);
   setLoading(false);
 };
-
 
 export default askAI;

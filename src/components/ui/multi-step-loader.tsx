@@ -1,7 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { LoadingState } from "@/utils/types";
 import { AnimatePresence, motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
     return (
@@ -35,9 +36,7 @@ const CheckFilled = ({ className }: { className?: string }) => {
     );
 };
 
-type LoadingState = {
-    text: string;
-};
+
 
 const LoaderCore = ({
     loadingStates,
@@ -50,12 +49,12 @@ const LoaderCore = ({
         <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
             {loadingStates.map((loadingState, index) => {
                 const distance = Math.abs(index - value);
-                const opacity = Math.max(1 - distance * 0.2, 0); // Minimum opacity is 0, keep it 0.2 if you're sane.
+                const opacity = Math.max(1 - distance * 0.2, 0);
 
                 return (
                     <motion.div
                         key={index}
-                        className={cn("text-left flex gap-2 mb-4")}
+                        className={cn("text-left flex gap-2 mb-4 font-bold lg:font-medium")}
                         initial={{ opacity: 0, y: -(value * 40) }}
                         animate={{ opacity: opacity, y: -(value * 40) }}
                         transition={{ duration: 0.5 }}
@@ -134,7 +133,7 @@ export const MultiStepLoader = ({
                     }}
                     className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
                 >
-                    <div className="h-96  relative">
+                    <div className="h-96 relative">
                         <LoaderCore value={currentState} loadingStates={loadingStates} />
                     </div>
 

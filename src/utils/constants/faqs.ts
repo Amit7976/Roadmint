@@ -30,6 +30,4 @@ const faqs = [
       "Nope. Your progress is saved locally in your browser automatically.",
   },
 ];
-
-
 export default faqs;
