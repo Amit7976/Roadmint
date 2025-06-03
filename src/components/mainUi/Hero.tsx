@@ -1,5 +1,5 @@
 "use client"
-import { TextAnimate } from "@/components/magicui/text-animate";
+import { AnimatedText } from "@/utils/constants/animate";
 import trendingCSTopics from '@/utils/constants/trendingCSTopics';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
@@ -42,13 +42,11 @@ function Hero() {
         <div className="relative overflow-hidden h-screen">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:pt-28">
                 <div className="text-center">
-                    <TextAnimate animation="slideUp" by="character" as='h1' className="text-4xl sm:text-7xl font-extrabold lg:font-bold text-gray-100">
-                        Roadmap
-                    </TextAnimate>
+                    <AnimatedText text="Roadmap" />
+                    <p className="mt-5 text-gray-300 max-w-xl mx-auto font-bold text-center flex flex-wrap gap-1">
+                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you'll get!
+                    </p>
 
-                    <TextAnimate animation="blurIn" by="word" as='p' className="mt-5 text-gray-300 max-w-xl mx-auto font-bold lg:font-medium">
-                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you&#39;ll get!
-                    </TextAnimate>
 
                     <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
                         <form onSubmit={submitHandler}>

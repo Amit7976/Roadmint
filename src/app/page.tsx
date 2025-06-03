@@ -1,4 +1,3 @@
-import SplashCursor from "@/components/Animations/SplashCursor";
 import { Meteors } from "@/components/magicui/meteors";
 import Faq from "@/components/mainUi/Faq";
 import { FeaturesSection } from "@/components/mainUi/features";
@@ -18,7 +17,6 @@ export default function Page() {
         <div className="w-[98%] h-screen absolute overflow-hidden">
           <Meteors />
         </div>
-        <SplashCursor />
         <Header />
         <Hero />
         <FeaturesSection />

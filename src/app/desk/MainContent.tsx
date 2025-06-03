@@ -1,9 +1,10 @@
 'use client';
-import { TextAnimate } from '@/components/magicui/text-animate';
+// import { TextAnimate } from '@/components/magicui/text-animate';
 import DeleteRoadmapButton from '@/components/mainUi/DeleteRoadmapButton';
 import ResultDisplay from '@/components/mainUi/ResultDisplay';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AnimatedText } from '@/utils/constants/animate';
 import { exportToCSV } from '@/utils/exportToCSV';
 import { Roadmap } from '@/utils/types';
 import Link from 'next/link';
@@ -53,13 +54,11 @@ export default function MainContent() {
     if (roadmaps.length === 0) {
         return (
             <div className="p-10 text-center text-lg text-white min-h-96 flex flex-col items-center justify-center my-20">
-                <TextAnimate animation="slideUp" by="character" as='h1' className="text-4xl sm:text-7xl font-bold text-gray-100">
-                    Oops!
-                </TextAnimate>
+                 <AnimatedText text="Oops!" />
 
-                <TextAnimate animation="blurIn" by="word" as='p' className="mt-8 text-gray-300 max-w-xl mx-auto">
+                <p className="mt-8 text-gray-300 max-w-xl mx-auto">
                     No roadmaps yet. Wanna make one and flex your skills?
-                </TextAnimate>
+                </p>
 
                 <Link href={'/'} className='w-fit h-12 px-10 flex items-center justify-center rounded-sm bg-neutral-800 hover:bg-neutral-700 duration-300 mt-16 text-sm font-medium hover:scale-105 active:scale-95'>Create Your First Roadmap</Link>
             </div>
