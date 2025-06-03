@@ -44,7 +44,7 @@ function Hero() {
                 <div className="text-center">
                     <AnimatedText text="Roadmap" />
                     <p className="mt-5 text-gray-300 max-w-xl mx-auto font-bold text-center flex flex-wrap gap-1">
-                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you'll get!
+                        Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you&#39;ll get!
                     </p>
 
 
