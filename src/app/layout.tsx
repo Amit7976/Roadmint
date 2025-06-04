@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -37,18 +37,23 @@ export const metadata: Metadata = {
     "daily learning steps",
     "education roadmap",
   ],
-  authors: [{ name: "Roadmint Team", url: "https://yourdomain.com" }],
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/icons/icon-192x192.png',
+    apple: '/icons/icon-192x192.png',
+  },
+  authors: [{ name: "Roadmint Team", url: "https://roadmap-999.vercel.app" }],
   creator: "Amit | Roadmint",
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("https://roadmap-999.vercel.app"),
   openGraph: {
     title: "Roadmint — Your Free AI Learning Companion",
     description:
       "Turn any topic into a clear, day-wise roadmap. Stay consistent, track progress, and export anytime. No account needed.",
-    url: "https://yourdomain.com",
+    url: "https://roadmap-999.vercel.app",
     siteName: "Roadmint",
     images: [
       {
-        url: "https://yourdomain.com/og-image.png",
+        url: "https://roadmap-999.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Roadmint — AI-Powered Roadmap Generator",
@@ -62,10 +67,20 @@ export const metadata: Metadata = {
     title: "Roadmint — Free AI-Powered Learning Roadmaps",
     description:
       "Create custom learning roadmaps for any topic. Track, export, and learn—no sign-up required.",
-    images: ["https://yourdomain.com/og-image.png"],
+    images: ["https://roadmap-999.vercel.app/og-image.png"],
   },
 };
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const viewport: Viewport = {
+  themeColor: '#171717',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
