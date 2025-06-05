@@ -82,7 +82,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
         unmark = false,
         note: string | null = null
     ) => {
-        
+
         const updated = { ...roadmap };
 
         updated[subject][index].marked = !unmark;
@@ -101,10 +101,10 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        try {  
+        try {
             const encrypted = encrypt(updated);
             localStorage.setItem(`roadmap_${searchTopic}`, encrypted);
-          
+
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (!unmark) {
@@ -131,22 +131,22 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (!unmark) {
+                const nextIndex = index + 1;
                 setTimeout(() => {
-                    const nextIndex = index + 1;
                     if (topicRefs.current[subject] && topicRefs.current[subject][nextIndex]) {
                         topicRefs.current[subject][nextIndex]?.scrollIntoView({
                             behavior: "smooth",
                             block: "center",
                         });
                     }
-                }, 1000);
+                }, 100);
             }
 
         } catch (err) {
             console.error("Failed to update localStorage:", err);
         }
     };
-      
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,7 +203,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 
 
                         {isExpanded && (
-                            <TopicList topics={topics} subject={subject} handleComplete={handleComplete} />
+                            <TopicList topics={topics} subject={subject} handleComplete={handleComplete} topicRefs={topicRefs} />
                         )}
                     </div>
                 );

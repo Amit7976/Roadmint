@@ -99,6 +99,9 @@ export type TopicListProps = {
     unmark?: boolean,
     note?: string
   ) => void;
+  topicRefs: React.MutableRefObject<
+    Record<string, Array<HTMLLIElement | null>>
+  >;
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////

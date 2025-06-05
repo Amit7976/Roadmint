@@ -10,7 +10,7 @@ import MarkCompleteNoteDialog from "./TopicNotes";
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function TopicList({ topics, subject, handleComplete }: TopicListProps) {
+function TopicList({ topics, subject, handleComplete, topicRefs }: TopicListProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ function TopicList({ topics, subject, handleComplete }: TopicListProps) {
                 const isOpen = openIndex === idx;
 
                 return (
-                    <li key={idx}>
+                    <li key={idx} ref={(el) => { topicRefs.current[subject][idx] = el; }}>
                         <div
                             style={{ animationDelay: `${idx * 80}ms`, animationFillMode: "backwards" }}
                             className={`animate-fade-in-up overflow-hidden relative flex justify-between items-center py-3 px-5 transition-all rounded-lg duration-500 border-2 shadow-sm cursor-pointer ${topic.marked

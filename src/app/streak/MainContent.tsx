@@ -105,8 +105,7 @@ function MainContent() {
               </div>
               <AnimatedText text={`day${streak > 1 ? 's' : ''} streak`} color={'#d59bff'} />
             </section>
-
-
+            
             <section className='flex justify-center items-center gap-0 lg:gap-3 mt-16 w-full'>
               <div
                 style={{ animationDelay: `${0}ms`, animationFillMode: "backwards" }}
