@@ -213,7 +213,3 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 };
 
 export default ResultDisplay;
-
-
-
-

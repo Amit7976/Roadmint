@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { FaRegLightbulb } from 'react-icons/fa6';

@@ -27,7 +27,6 @@ const MarkCompleteNoteDialog = ({
     canMark,
     isMarked,
 }: MarkCompleteNoteDialogProps) => {
-    const [open, setOpen] = useState(false);
     const [note, setNote] = useState("");
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,16 +34,14 @@ const MarkCompleteNoteDialog = ({
     const handleSave = () => {
         onComplete(subject, topicIndex, note);
         setNote("");
-        setOpen(false);
     };
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <AlertDialog open={open} onOpenChange={setOpen}>
+        <AlertDialog>
             <AlertDialogTrigger asChild>
                 <Button
-                    onClick={() => setOpen(true)}
                     disabled={!canMark || isMarked}
                     className={`text-xs md:text-sm font-medium px-4 py-1.5 rounded-sm lg:rounded-lg transition-colors duration-150 ${isMarked
                         ? "bg-transparent cursor-not-allowed"

@@ -11,6 +11,7 @@ import MarkCompleteNoteDialog from "./TopicNotes";
 
 
 function TopicList({ topics, subject, handleComplete, topicRefs }: TopicListProps) {
+    
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////

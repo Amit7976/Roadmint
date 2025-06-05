@@ -18,8 +18,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
     const topic = decodeURIComponent(params.q || "");
     return {
-        title: `Learn ${topic} | Roadmap App`,
-        description: `Start learning ${topic} with your personalized roadmap.`,
+        title: `${topic} Personalized Free Roadmap by AI | Roadmint`,
+        description: `Start learning ${topic} with your personalized roadmap by Ai.`,
     };
 }
 

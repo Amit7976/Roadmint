@@ -38,6 +38,7 @@ function Footer() {
                                 </p>
                             </div>
                         </div>
+                            <p className='text-xs font-medium text-gray-400 mt-1 max-w-sm'>Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.</p>
                     </div>
                 </div>
             </footer>

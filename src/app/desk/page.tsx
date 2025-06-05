@@ -1,18 +1,18 @@
 import Footer from '@/components/mainUi/Footer';
 import Header from '@/components/mainUi/Header';
 import MainContent from './MainContent';
+import { Metadata } from 'next';
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-export async function generateMetadata() {
-    return {
-        title: 'Your Personalized Learning Desk',
-        description: 'Manage all your learning roadmaps in one place. Track your progress, stay motivated, and continue your journey across multiple subjects with ease.',
-    };
-}
+export const metadata: Metadata = {
+    title: 'Learning Desk | All Your Roadmaps in One Place | Roadmint',
+    description: 'Access all your learning roadmaps and topics in one organized dashboard. Track what you’ve completed and plan what’s next — fast, simple, and personalized.',
+  };
+  
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
