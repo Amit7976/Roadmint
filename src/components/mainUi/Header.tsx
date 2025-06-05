@@ -1,6 +1,6 @@
 import Logo from '@/components/mainUi/Logo';
 import { HeaderProps } from '@/utils/types';
-import Link from 'next/link';
+import { LoaderLink } from './loaderLinks';
 import StreakDisplay from './streakTracker';
 
 
@@ -17,11 +17,13 @@ function Header({ show = true }: HeaderProps) {
             <Logo />
 
             {show ?
-              <Link href={'/desk'} className='text-gray-300 font-semibold lg:font-medium bg-neutral-800 hover:bg-neutral-900 hover:text-white border-2 border-neutral-700 duration-300 px-5 lg:px-10 py-2 lg:py-2.5 rounded-sm hover:-translate-y-0.5 active:scale-95'>
+              <LoaderLink href={'/desk'} className='text-gray-300 font-semibold cursor-pointer lg:font-medium bg-neutral-800 hover:bg-neutral-900 hover:text-white border-2 border-neutral-700 duration-300 px-5 lg:px-10 py-2 lg:py-2.5 rounded-sm hover:-translate-y-0.5 active:scale-95'>
                 Your Desk
-              </Link>
+              </LoaderLink>
               :
-              <StreakDisplay />
+              <LoaderLink href={'/streak'} className='cursor-pointer'>
+                <StreakDisplay />
+              </LoaderLink>
             }
 
           </div>

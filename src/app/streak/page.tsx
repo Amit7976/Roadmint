@@ -1,9 +1,17 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import MainContent from './MainContent'
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+
+function page() {
+
+    return (
+        <div>
+            <MainContent />
+        </div>
+    )
 }
+
+export default page

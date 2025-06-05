@@ -3,7 +3,7 @@ import { Props, Roadmap } from "@/utils/types";
 import confetti from "canvas-confetti";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
-import LearnNowButton from "./LearnNowButton";
+import TopicList from "./TopicList";
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +12,7 @@ import LearnNowButton from "./LearnNowButton";
 
 const encrypt = (data: Roadmap) =>
     btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,69 +76,77 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    const handleComplete = (subject: string, index: number) => {
+    const handleComplete = (
+        subject: string,
+        index: number,
+        unmark = false,
+        note: string | null = null
+    ) => {
+        
         const updated = { ...roadmap };
 
-        if (!updated[subject][index].marked) {
-            updated[subject][index].marked = true;
-            setRoadmap(updated);
+        updated[subject][index].marked = !unmark;
 
+        if (!unmark) {
+            if (note !== null) {
+                updated[subject][index].note = note;
+            }
+            updated[subject][index].timeStamp = new Date();
+        } else {
+            updated[subject][index].timeStamp = null;
+            updated[subject][index].note = "";
+        }
+
+        setRoadmap(updated);
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        try {  
+            const encrypted = encrypt(updated);
+            localStorage.setItem(`roadmap_${searchTopic}`, encrypted);
+          
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            try {
-                const encrypted = encrypt(updated);
-                localStorage.setItem(`roadmap_${searchTopic}`, encrypted);
-
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+            if (!unmark) {
+                // Confetti + sound when marking complete
                 const end = Date.now() + 1000;
                 const colors = ["#60ff1c", "#ff708f", "#ffd86c", "#e97cff"];
                 const frame = () => {
                     if (Date.now() > end) return;
-
-                    confetti({
-                        particleCount: 2,
-                        angle: 60,
-                        spread: 55,
-                        startVelocity: 60,
-                        origin: { x: 0, y: 1 },
-                        colors: colors
-                    });
-                    confetti({
-                        particleCount: 2,
-                        angle: 120,
-                        spread: 55,
-                        startVelocity: 60,
-                        origin: { x: 1, y: 1 },
-                        colors: colors
-                    });
-
+                    confetti({ particleCount: 2, angle: 60, spread: 55, startVelocity: 60, origin: { x: 0, y: 1 }, colors });
+                    confetti({ particleCount: 2, angle: 120, spread: 55, startVelocity: 60, origin: { x: 1, y: 1 }, colors });
                     requestAnimationFrame(frame);
                 };
-
                 frame();
 
-                triggerRefresh?.();
-
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            } catch (err) {
-                console.error("Failed to update localStorage:", err);
+                new Audio("/sounds/confetti.mp3").play().catch(console.error);
+            } else {
+                new Audio("/sounds/undo.mp3").play().catch(console.error);
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            setTimeout(() => {
-                const nextIndex = index + 1;
-                if (topicRefs.current[subject] && topicRefs.current[subject][nextIndex]) {
-                    topicRefs.current[subject][nextIndex]?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                    });
-                }
-            }, 1000);
+            triggerRefresh?.();
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            if (!unmark) {
+                setTimeout(() => {
+                    const nextIndex = index + 1;
+                    if (topicRefs.current[subject] && topicRefs.current[subject][nextIndex]) {
+                        topicRefs.current[subject][nextIndex]?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                    }
+                }, 1000);
+            }
+
+        } catch (err) {
+            console.error("Failed to update localStorage:", err);
         }
     };
+      
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,7 +169,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
                 return (
                     <div
                         key={subject}
-                        className="bg-zinc-900 border border-zinc-700 rounded-xl rounded-b-none shadow-lg"
+                        className="bg-zinc-900 border border-zinc-700 rounded-xl rounded-b-none shadow-lg hover:scale-[1.005] hover:shadow-lg animate-fade-in-up transition-all duration-700"
                     >
                         {/* Sticky Header */}
                         <Button
@@ -192,55 +201,9 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
                             </div>
                         </Button>
 
-                        {isExpanded && (
-                            <ul className="space-y-3 p-3 sm:p-6">
-                                {topics.map((topic, idx) => {
-                                    const canMark = idx === 0 || topics[idx - 1].marked;
-                                    return (
-                                        <li
-                                            key={idx}
-                                            ref={(el) => {
-                                                topicRefs.current[subject][idx] = el;
-                                            }}
-                                            className={`flex justify-between items-center py-3 px-5 rounded-lg transition-all duration-200 shadow-sm ${topic.marked
-                                                ? "bg-green-800 border border-green-400"
-                                                : canMark
-                                                    ? "h-28 bg-zinc-800 border border-zinc-700"
-                                                    : "bg-zinc-900 border border-zinc-700"
-                                                }`}
-                                        >
-                                            <span
-                                                className={`text-sm font-medium md:text-base ${topic.marked ? "text-green-300" : canMark
-                                                    ? "font-semibold text-white"
-                                                    : "text-gray-400"
-                                                    }`}
-                                            >
-                                                {idx + 1}. {topic.title}
-                                            </span>
-                                            <div className="flex flex-col lg:flex-row gap-3 items-center justify-center ml-4">
-                                                <div className="w-full text-center">
 
-                                                    {(topic.marked || canMark) &&
-                                                        <LearnNowButton topic={topic} ui2={topic.marked} />
-                                                    }
-                                                </div>
-                                                <Button
-                                                    onClick={() => handleComplete(subject, idx)}
-                                                    disabled={topic.marked || !canMark}
-                                                    className={`text-xs md:text-sm font-medium px-4 py-1.5 rounded-sm lg:rounded-lg transition-colors duration-150 ${topic.marked
-                                                        ? "bg-transparent cursor-not-allowed"
-                                                        : canMark
-                                                            ? "bg-green-800 border-2 border-green-500 hover:bg-green-700 text-green-200 cursor-pointer lg:px-10 lg:h-12 font-bold lg:font-medium"
-                                                            : "bg-gray-600 text-gray-300 cursor-not-allowed"
-                                                        }`}
-                                                >
-                                                    {topic.marked ? "Completed 🎉" : "Mark Complete"}
-                                                </Button>
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                        {isExpanded && (
+                            <TopicList topics={topics} subject={subject} handleComplete={handleComplete} />
                         )}
                     </div>
                 );
@@ -250,3 +213,7 @@ const ResultDisplay: React.FC<Props> = ({ result, searchTopic, triggerRefresh })
 };
 
 export default ResultDisplay;
+
+
+
+

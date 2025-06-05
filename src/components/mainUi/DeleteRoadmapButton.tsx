@@ -12,8 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { DeleteRoadmapButtonProps } from "@/utils/types";
 import { useState } from 'react';
-import { IoTrashOutline } from "react-icons/io5";
-
+import { FaRegTrashCan } from "react-icons/fa6";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,14 +63,14 @@ function DeleteRoadmapButton({
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <div
-                        className="flex gap-1 items-center bg-neutral-800 duration-300 hover:bg-red-500 px-6 py-2 rounded-sm cursor-pointer"
+                        className="flex gap-1 items-center bg-neutral-800 duration-300 hover:bg-red-500 px-6 py-2 rounded-sm cursor-pointer select-none"
                         onClick={() => {
                             setSelectedKeyToDelete(itemKey);
                             setVerifyInput("");
                             setShowDeleteDialog(true);
                         }}
                     >
-                        <IoTrashOutline className="text-white text-xl" />
+                        <FaRegTrashCan className="text-white text-xl" />
                         <span className="text-white font-medium">Delete</span>
                     </div>
                 </AlertDialogTrigger>

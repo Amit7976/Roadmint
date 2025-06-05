@@ -8,26 +8,23 @@ const askAI = async ({ topic, setLoading, setResult }: AskAIParams) => {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  const prompt = `I want to learn ${topic}. 
+  const prompt = `I want to learn ${topic}.
 Act like a subject matter expert and curriculum architect for [TOPIC].
 
-Your task is to generate a **deeply detailed and exhaustive list of subtopics**, structured strictly as a **JSON object**, for the complete mastery of [TOPIC].
+Your task is to generate a **deeply detailed and exhaustive list of subtopics**, structured as a JSON object grouped by **logical subject categories** (e.g., JavaScript, React, etc.), **not difficulty levels**.
 
 **Rules**:
 - The output must be in **valid JSON** format.
-- Each major category should be a **key** (string), and its value should be a **list of atomic subtopic strings**.
-- Do **not explain**, define, or describe anything.
-- Do **not include any text or headings before or after the JSON** — output should only be a clean JSON object.
-- Each subtopic must be **precise and self-contained** (e.g., "JavaScript closures" not just "Closures").
-- No duplicate or overlapping subtopics.
-- Do **not** combine multiple sub-concepts into one line.
-- Go as deep as reasonably possible. Include both fundamental and advanced concepts.
+- Each subject area should be a **key** (string), and its value should be a **list of objects**, each with:
+  - "subtopic": a precise and self-contained subtopic string.
+  - "difficulty": an integer from 1 (easy) to 5 (very hard).
+- Do **not** group the content by "Fundamentals", "Intermediate", or "Advanced".
+- Do **not** include any explanation, summary, heading, or extra text.
+- Do **not** combine multiple concepts into a single subtopic.
+- Go as deep and detailed as possible, covering both beginner and expert-level topics — but group only by actual subject/category.
 
 **IMPORTANT**:  
-Do **not** include any extra explanation, introduction, summary, learning plans, durations, or formatting.  
-Just a raw JSON object of cleanly grouped subtopics for [TOPIC].
-
-    `;
+Only return a clean JSON object. No extra text or markdown.`;
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +41,13 @@ Just a raw JSON object of cleanly grouped subtopics for [TOPIC].
 
   const data = await res.json();
   setResult(data.text);
+  if (!data.text) {
+    setLoading(false);
+    return alert("Failed to generate subtopics. Please try again.");
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   setLoading(false);
 };
 

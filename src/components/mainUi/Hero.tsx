@@ -1,11 +1,11 @@
 "use client"
 import { AnimatedText } from "@/utils/constants/animate";
 import trendingCSTopics from '@/utils/constants/trendingCSTopics';
-import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from '../ui/input';
+import { LoaderLink } from "./loaderLinks";
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,10 +39,10 @@ function Hero() {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className="relative overflow-hidden h-screen">
+        <div className="relative overflow-hidden h-full">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:pt-28">
                 <div className="text-center">
-                    <AnimatedText text="Roadmap" />
+                    <AnimatedText text="Roadmap"/>
                     <p className="mt-5 text-gray-300 max-w-xl mx-auto font-bold text-center flex flex-wrap gap-1">
                         Make sure your topic is clear, specific, and well-defined - the more precise it is, the better the roadmap you&#39;ll get!
                     </p>
@@ -81,13 +81,13 @@ function Hero() {
 
                     <div className="mt-10 sm:mt-20 flex items-center flex-wrap gap-2 justify-center">
                         {trendingCSTopics.map((topic, index) => (
-                            <Link
+                            <LoaderLink
                                 href={'/' + topic}
                                 key={index}
-                                className='bg-neutral-800 text-gray-300 hover:text-white duration-300 hover:scale-105 font-medium rounded-lg py-2.5 px-5 w-fit text-sm active:scale-95 cursor-pointer'
+                                className='bg-transparent border-2 border-neutral-800 text-gray-300 hover:text-white duration-300 hover:scale-105 font-medium rounded-lg py-2.5 px-5 w-fit text-xs active:scale-95 cursor-pointer'
                             >
                                 {topic}
-                            </Link>
+                            </LoaderLink>
                         ))}
                     </div>
                 </div>

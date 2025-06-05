@@ -1,6 +1,7 @@
 'use client';
 import { Confetti, type ConfettiRef } from "@/components/magicui/confetti";
 import { useEffect, useRef, useState } from 'react';
+import { BsFire } from "react-icons/bs";
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +33,6 @@ const decrypt = (val: string | null) => (val ? atob(val) : null);
 
 // Smart Badge Generator
 const getBadge = (streak: number) => {
-  const icons = ['🏃‍♂️‍➡️', '✨', '🏆', '💪', '🔥'];
   const labels = ['Streak', '3-Day Streak', '7-Day Streak', '14-Day Streak', '30-Day Streak'];
   const uis = [
     'bg-neutral-800 text-pink-400',
@@ -45,7 +45,6 @@ const getBadge = (streak: number) => {
   const idx = streak >= 30 ? 4 : streak >= 14 ? 3 : streak >= 7 ? 2 : streak >= 3 ? 1 : 0;
 
   return {
-    icon: icons[idx],
     label: labels[idx],
     ui: uis[idx],
   };
@@ -95,14 +94,14 @@ export default function StreakDisplay() {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  const { icon, label, ui } = getBadge(streak);
+  const { label, ui } = getBadge(streak);
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <>
       <div className={`font-bold text-sm px-5 py-2 rounded-full mt-1 inline-block ${ui}`}>
-        <p><b>{icon}</b> Streak - {streak} day{streak > 1 ? 's' : ''}</p>
+        <p className="flex items-center gap-1"><BsFire/> {streak} day{streak > 1 ? 's' : ''}</p>
       </div>
 
       {showOverlay && (
@@ -117,7 +116,7 @@ export default function StreakDisplay() {
             onMouseEnter={() => confettiRef.current?.fire({})}
           />
           <p className="text-2xl text-white font-medium font-mono text-center">
-            You&#39;ve unlocked the <span className="font-bold text-pink-600 whitespace-nowrap">{icon} {label}</span>
+            You&#39;ve unlocked the <span className="font-bold text-pink-600 whitespace-nowrap flex gap-2 mt-4 justify-center"><BsFire /> {label}</span>
           </p>
           <p className="text-sm text-gray-200 italic">
             Click Anywhere to remove it.
