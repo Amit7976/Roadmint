@@ -122,7 +122,7 @@ function MainContent({ topic }: PageProps) {
 
     return (
         <div className="whitespace-pre-wrap text-white p-4 rounded min-h-screen">
-            {!loading || !minimumTimePassed ? (
+            {loading || !minimumTimePassed ? (
                 <Loader loadingStates={loadingStates} loading={true} duration={1300} />
             ) : (
                 <>
