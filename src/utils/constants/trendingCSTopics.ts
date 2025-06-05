@@ -12,7 +12,7 @@ const trendingCSTopics = [
   "Cloud Computing",
   "DevOps",
   "Cybersecurity",
-  "Mobile App Development (Android/iOS)",
+  "Mobile App Development",
   "Blockchain Development",
   "Game Development",
   "Computer Architecture",
