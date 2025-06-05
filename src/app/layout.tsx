@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     "daily learning steps",
     "free roadmap",
   ],
+  verification: {
+    google: 'NNBw6f7lAr5SUMYT2XyMDeknY_fr1ad6mUgnRXBL3TM',
+  },
   alternates: {
     canonical: "https://roadmint.vercel.app",
   },
