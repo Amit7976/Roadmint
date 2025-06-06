@@ -1,6 +1,21 @@
-# Roadmint
+<p align="center">
+  <img src="https://roadmint.vercel.app/images/logo.png" width="100" alt="Roadmint Logo" />
+</p>
 
-**Free AI-Powered Learning Roadmaps Generator Platform**
+<h1 align="center">Roadmint</h1>
+
+
+
+**Roadmint** is a **free AI-powered platform** that generates personalized learning roadmaps for any skill or topic you want to master — instantly and with zero friction.
+
+🌱 Whether you're learning Web Development, Data Science, or even Origami (hey, who knows) — Roadmint crafts a custom, day-wise path tailored to your goals.
+
+---
+
+## 🌐 Live Links
+
+- 🔗 [roadmint.vercel.app](https://roadmint.vercel.app)
+- 🔗 [roadmint.netlify.app](https://roadmint.netlify.app)
 
 ---
 
@@ -43,37 +58,6 @@ Built with Next.js (app router), TypeScript, and React, Roadmint offers a sleek 
 
 <br>
 
----
-
-## ⚙️ Getting Started
-
-### Prerequisites
-
-- Node.js >= 18
-- npm or yarn
-
-### Installation
-
-```bash
-git clone https://github.com/Amit7976/roadmap
-cd roadmint
-npm install
-
-# or
-
-yarn install
-
-```
-## Running Locally
-
-```bash
-npm run dev
-# or
-yarn dev
-
-```
-
-Open your browser at http://localhost:3000
 
 ---
 
@@ -81,7 +65,7 @@ Open your browser at http://localhost:3000
 
 - Roadmint is deployed on Vercel at: https://roadmint.vercel.app
 
-- You can deploy it easily on Netlify or any static host supporting Next.js.
+- Roadmint is also deployed on Netlify at: https://roadmint.netlify.app
 
 ---
 
@@ -93,18 +77,18 @@ Open your browser at http://localhost:3000
 
 - Open Graph tags for rich social media previews.
 
----
-
-## 🤝 Contributing
-Feel free to open issues or submit PRs to improve Roadmint. Contributions are welcome!
 
 ---
 
 ## 📜 License
-MIT License © 2025 Amit
+
+*This project is NOT open source.* <br>
+**All rights reserved © 2025 Amit**  <br>
+Unauthorized use, copying, modification, or distribution of this code is strictly prohibited.  
+For licensing inquiries, contact: [guptaamit60600@gmail.com](mailto:guptaamit60600@gmail.com)
 
 ---
 
+
 ##  Thanks for checking out Roadmint!
 Keep learning, keep growing! 🚀
-
