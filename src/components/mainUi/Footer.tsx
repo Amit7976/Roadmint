@@ -34,7 +34,7 @@ function Footer() {
                             <Logo />
                             <div className="border-s border-neutral-700 ps-5 ms-5">
                                 <p className="text-sm text-neutral-400">
-                                    © 2025 Roadmint Labs.
+                                    All rights reserved © 2025 Roadmint
                                 </p>
                             </div>
                         </div>
