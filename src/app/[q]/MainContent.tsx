@@ -68,8 +68,8 @@ function MainContent({ topic }: PageProps) {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const minDuration = 8000;
-        const displayDelay = 5000;
+        const minDuration = 5000;
+        const displayDelay = 2000;
 
         setLoading(true);
         setResult(null);
@@ -123,7 +123,7 @@ function MainContent({ topic }: PageProps) {
     return (
         <div className="whitespace-pre-wrap text-white p-4 rounded min-h-screen">
             {loading || !minimumTimePassed ? (
-                <Loader loadingStates={loadingStates} loading={true} duration={1300} />
+                <Loader loadingStates={loadingStates} loading={true} duration={700} />
             ) : (
                 <>
                     <div className="p-4 pb-2">

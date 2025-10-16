@@ -37,6 +37,8 @@ export default function DailyTrivia() {
             }
         }
 
+        
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         fetch("https://opentdb.com/api.php?amount=1&type=multiple&category=18")
@@ -46,11 +48,11 @@ export default function DailyTrivia() {
             })
             .then(data => {
                 if (!data?.results?.length) throw new Error("Invalid trivia data");
-                const question = data.results[0];
+                const subData = data.results[0];
                 const value: TriviaData = {
-                    question: question.question,
-                    correct: question.correct_answer,
-                    options: [...question.incorrect_answers, question.correct_answer].sort(() => Math.random() - 0.5),
+                    question: subData.question,
+                    correct: subData.correct_answer,
+                    options: [...subData.incorrect_answers, subData.correct_answer].sort(() => Math.random() - 0.5),
                 };
                 setTrivia(value);
                 localStorage.setItem('daily_trivia', JSON.stringify({ date: today, value }));
