@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "Do I need to sign up to use this?",
     answer:
-      "Nope. Just open the app, type your topic, and boom — your roadmap is ready.",
+      "Nope. Just open the app, type your topic, and boom - your roadmap is ready.",
   },
   {
     question: "Can I customize the learning pace or days?",

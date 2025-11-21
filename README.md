@@ -4,11 +4,9 @@
 
 <h1 align="center">Roadmint</h1>
 
+**Roadmint** is a **free AI-powered platform** that generates personalized learning roadmaps for any skill or topic you want to master - instantly and with zero friction.
 
-
-**Roadmint** is a **free AI-powered platform** that generates personalized learning roadmaps for any skill or topic you want to master — instantly and with zero friction.
-
-🌱 Whether you're learning Web Development, Data Science, or even Origami (hey, who knows) — Roadmint crafts a custom, day-wise path tailored to your goals.
+🌱 Whether you're learning Web Development, Data Science, or even Origami (hey, who knows) - Roadmint crafts a custom, day-wise path tailored to your goals.
 
 ---
 
@@ -21,7 +19,7 @@
 
 ## 🚀 Project Overview
 
-Roadmint is a modern web app that helps learners generate personalized, day-wise learning roadmaps for any topic — no sign-up required and free forever! Manage multiple subjects, track your progress, monitor streaks, and export your achievements easily.
+Roadmint is a modern web app that helps learners generate personalized, day-wise learning roadmaps for any topic - no sign-up required and free forever! Manage multiple subjects, track your progress, monitor streaks, and export your achievements easily.
 
 Built with Next.js (app router), TypeScript, and React, Roadmint offers a sleek dashboard to keep your learning journey organized and motivating.
 
@@ -51,13 +49,11 @@ Built with Next.js (app router), TypeScript, and React, Roadmint offers a sleek 
 
 /app <br>
 ├── **/** ── Home & Add Roadmap Page<br>
-├── **/desk**  ── Dashboard for all roadmaps <br>
+├── **/desk** ── Dashboard for all roadmaps <br>
 ├── **/streak** ── Streak & progress report page <br>
 ├── **/[q]** ── Dynamic route for individual topics <br>
 
-
 <br>
-
 
 ---
 
@@ -77,18 +73,17 @@ Built with Next.js (app router), TypeScript, and React, Roadmint offers a sleek 
 
 - Open Graph tags for rich social media previews.
 
-
 ---
 
 ## 📜 License
 
-*This project is NOT open source.* <br>
-**All rights reserved © 2025 Amit**  <br>
+_This project is NOT open source._ <br>
+**All rights reserved © 2025 Amit** <br>
 Unauthorized use, copying, modification, or distribution of this code is strictly prohibited.  
 For licensing inquiries, contact: [guptaamit60600@gmail.com](mailto:guptaamit60600@gmail.com)
 
 ---
 
+## Thanks for checking out Roadmint!
 
-##  Thanks for checking out Roadmint!
 Keep learning, keep growing! 🚀

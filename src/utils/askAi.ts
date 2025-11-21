@@ -21,7 +21,7 @@ Your task is to generate a **deeply detailed and exhaustive list of subtopics**,
 - Do **not** group the content by "Fundamentals", "Intermediate", or "Advanced".
 - Do **not** include any explanation, summary, heading, or extra text.
 - Do **not** combine multiple concepts into a single subtopic.
-- Go as deep and detailed as possible, covering both beginner and expert-level topics — but group only by actual subject/category.
+- Go as deep and detailed as possible, covering both beginner and expert-level topics - but group only by actual subject/category.
 
 **IMPORTANT**:  
 Only return a clean JSON object. No extra text or markdown.`;

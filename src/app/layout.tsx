@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const metadata: Metadata = {
-  title: "Roadmint — Free AI-Powered Learning Roadmaps",
+  title: "Roadmint - Free AI-Powered Learning Roadmaps",
   description:
     "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
   keywords: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   creator: "Amit | Roadmint",
   metadataBase: new URL("https://roadmint.vercel.app"),
   openGraph: {
-    title: "Roadmint — Free AI-Powered Learning Roadmaps",
+    title: "Roadmint - Free AI-Powered Learning Roadmaps",
     description:
       "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
     url: "https://roadmint.vercel.app",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
         url: "https://roadmint.vercel.app/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Roadmint — AI-Powered Roadmap Generator",
+        alt: "Roadmint - AI-Powered Roadmap Generator",
       },
     ],
     locale: "en_US",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roadmint — Free AI-Powered Learning Roadmaps",
+    title: "Roadmint - Free AI-Powered Learning Roadmaps",
     description:
       "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
     images: ["https://roadmint.vercel.app/opengraph-image.png"],
@@ -108,7 +108,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta property="og:updated_time" content={updatedTime} />
-        
+
         {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"

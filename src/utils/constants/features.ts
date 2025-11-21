@@ -9,15 +9,13 @@ import {
   FaTerminal,
 } from "react-icons/fa6";
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 const features = [
   {
     title: "No Sign-Up Needed",
-    description: "Jump straight in—no account required.",
+    description: "Jump straight in-no account required.",
     icon: FaTerminal,
   },
   {
@@ -45,7 +43,7 @@ const features = [
   },
   {
     title: "AI-Powered Breakdown",
-    description: "Smart topic segmentation—crafted with the help of AI.",
+    description: "Smart topic segmentation-crafted with the help of AI.",
     icon: FaRobot,
   },
   {
@@ -55,7 +53,7 @@ const features = [
   },
   {
     title: "Offline Access",
-    description: "Use your roadmap anytime—even without the internet.",
+    description: "Use your roadmap anytime-even without the internet.",
     icon: FaCloud,
   },
 ];
