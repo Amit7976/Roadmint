@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://roadmint.vercel.app/sitemap.xml
+Sitemap: https://roadmint.in/sitemap.xml

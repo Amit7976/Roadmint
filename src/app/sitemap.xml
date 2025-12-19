@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://roadmint.vercel.app/</loc>
+    <loc>https://roadmint.in/</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://roadmint.vercel.app/desk</loc>
+    <loc>https://roadmint.in/desk</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://roadmint.vercel.app/streak</loc>
+    <loc>https://roadmint.in/streak</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -24,21 +24,21 @@
 
   <!-- Example Topic Pages -->
   <url>
-    <loc>https://roadmint.vercel.app/html</loc>
+    <loc>https://roadmint.in/html</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://roadmint.vercel.app/javascript</loc>
+    <loc>https://roadmint.in/javascript</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://roadmint.vercel.app/react</loc>
+    <loc>https://roadmint.in/react</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

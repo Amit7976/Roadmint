@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://roadmint.vercel.app/images/logo.png" width="100" alt="Roadmint Logo" />
+  <img src="https://roadmint.in/images/logo.png" width="100" alt="Roadmint Logo" />
 </p>
 
 <h1 align="center">Roadmint</h1>
@@ -12,7 +12,7 @@
 
 ## 🌐 Live Links
 
-- 🔗 [roadmint.vercel.app](https://roadmint.vercel.app)
+- 🔗 [roadmint.in](https://roadmint.in)
 - 🔗 [roadmint.netlify.app](https://roadmint.netlify.app)
 
 ---
@@ -59,7 +59,7 @@ Built with Next.js (app router), TypeScript, and React, Roadmint offers a sleek 
 
 ## 📤 Deployment
 
-- Roadmint is deployed on Vercel at: https://roadmint.vercel.app
+- Roadmint is deployed on Vercel at: https://roadmint.in
 
 - Roadmint is also deployed on Netlify at: https://roadmint.netlify.app
 

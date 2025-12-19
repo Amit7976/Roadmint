@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     google: 'NNBw6f7lAr5SUMYT2XyMDeknY_fr1ad6mUgnRXBL3TM',
   },
   alternates: {
-    canonical: "https://roadmint.vercel.app",
+    canonical: "https://roadmint.in",
   },
   other: {
     "next-size-adjust": "100%",
@@ -51,18 +51,18 @@ export const metadata: Metadata = {
     icon: '/icons/icon-192x192.png',
     apple: '/icons/icon-192x192.png',
   },
-  authors: [{ name: "Roadmint Team", url: "https://roadmint.vercel.app" }],
+  authors: [{ name: "Roadmint Team", url: "https://roadmint.in" }],
   creator: "Amit | Roadmint",
-  metadataBase: new URL("https://roadmint.vercel.app"),
+  metadataBase: new URL("https://roadmint.in"),
   openGraph: {
     title: "Roadmint - Free AI-Powered Learning Roadmaps",
     description:
       "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
-    url: "https://roadmint.vercel.app",
+    url: "https://roadmint.in",
     siteName: "Roadmint",
     images: [
       {
-        url: "https://roadmint.vercel.app/opengraph-image.png",
+        url: "https://roadmint.in/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Roadmint - AI-Powered Roadmap Generator",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "Roadmint - Free AI-Powered Learning Roadmaps",
     description:
       "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
-    images: ["https://roadmint.vercel.app/opengraph-image.png"],
+    images: ["https://roadmint.in/opengraph-image.png"],
   },
 };
 
@@ -117,7 +117,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "Roadmint",
-              "url": "https://roadmint.vercel.app",
+              "url": "https://roadmint.in",
               "description":
                 "Get a personalized free AI-powered learning roadmap in seconds. No sign-up & Account needed. Free forever. Track your progress and export your learning data.",
               "applicationCategory": "EducationApplication",
